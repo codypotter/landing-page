@@ -31,7 +31,8 @@
             "assets": [
               "src/favicon.ico",
               "src/og-image.png",
-              "src/assets"
+              "src/assets",
+              "src/site.webmanifest"
             ],
             "styles": [
               "src/styles.scss"
@@ -92,7 +93,8 @@
             "assets": [
               "src/favicon.ico",
               "src/og-image.png",
-              "src/assets"
+              "src/assets",
+              "src/site.webmanifest"
             ],
             "styles": [
               "src/styles.scss"
