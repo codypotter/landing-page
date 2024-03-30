@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "npm run build && aws s3 sync ./dist/landing-page/browser/ s3://cody-potter-landing-page-web --delete"
   },
   "private": true,
   "dependencies": {
