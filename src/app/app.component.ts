@@ -5,6 +5,7 @@ import { faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-ic
 import { NgxParticlesModule, NgParticlesService } from '@tsparticles/angular';
 import { Container, IOptions, MoveDirection, OutMode, RecursivePartial } from '@tsparticles/engine';
 import { loadSlim } from '@tsparticles/slim';
+import { version } from '../../package.json';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ export class AppComponent implements AfterViewInit {
   particlesOptions: RecursivePartial<IOptions>;
 
   constructor(private readonly ngParticlesService: NgParticlesService) {
+    console.warn('AppComponent constructor with version', version);
     const isLightMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     const linkColor = isLightMode ? '#000000' : '#ffffff';
     this.particlesOptions = {
@@ -88,8 +90,9 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    console.warn('AppComponent ngAfterViewInit');
     this.ngParticlesService.init(async (engine) => {
-      console.log(engine);
+      console.warn(engine);
       await loadSlim(engine).catch((e) => console.error(e));
     })
   }
