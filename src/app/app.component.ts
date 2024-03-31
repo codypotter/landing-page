@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
@@ -13,7 +13,7 @@ import { loadSlim } from '@tsparticles/slim';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit {
   title = 'landing-page';
 
   faGithub = faGithub;
@@ -87,11 +87,10 @@ export class AppComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.ngParticlesService.init(async (engine) => {
       console.log(engine);
-
-      await loadSlim(engine);
+      await loadSlim(engine).catch((e) => console.error(e));
     })
   }
 
