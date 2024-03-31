@@ -1,5 +1,7 @@
 <section class="hero is-fullheight">
-  <ngx-particles id="tsparticles" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"></ngx-particles>
+  <div *ngIf="particlesReady" class="particles" [@fadeInOut]>
+    <ngx-particles id="tsparticles" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"></ngx-particles>
+  </div>
   <div class="hero-body container">
     <div>
       <h1 class="title is-size-1">Cody Potter</h1>

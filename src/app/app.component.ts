@@ -1,18 +1,28 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { NgxParticlesModule, NgParticlesService } from '@tsparticles/angular';
-import { Container, IOptions, MoveDirection, OutMode, RecursivePartial } from '@tsparticles/engine';
+import { Container, IOptions, RecursivePartial } from '@tsparticles/engine';
 import { loadSlim } from '@tsparticles/slim';
 import { version } from '../../package.json';
+import { ParticlesConfigService } from './particles-config.service';
+import { CommonModule } from '@angular/common';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FontAwesomeModule, NgxParticlesModule],
+  imports: [CommonModule, FontAwesomeModule, NgxParticlesModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition('void <=> *', animate(1000)),
+    ])
+  ]
 })
 export class AppComponent implements AfterViewInit {
   title = 'landing-page';
@@ -22,78 +32,23 @@ export class AppComponent implements AfterViewInit {
   faYoutube = faYoutube;
 
   particlesOptions: RecursivePartial<IOptions>;
+  particlesReady = false;
 
-  constructor(private readonly ngParticlesService: NgParticlesService) {
+  constructor(
+    private particlesConfigService: ParticlesConfigService,
+    private readonly ngParticlesService: NgParticlesService,
+  ) {
     console.warn('AppComponent constructor with version', version);
-    const isLightMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-    const linkColor = isLightMode ? '#000000' : '#ffffff';
-    this.particlesOptions = {
-      fpsLimit: 120,
-      interactivity: {
-        events: {
-          onHover: {
-            enable: true,
-            mode: 'repulse',
-          },
-        },
-        modes: {
-          push: {
-            quantity: 4,
-          },
-          repulse: {
-            distance: 100,
-            duration: 0.4,
-          },
-        },
-      },
-      particles: {
-        color: {
-          value: linkColor,
-        },
-        links: {
-          color: linkColor,
-          distance: 150,
-          enable: true,
-          opacity: 0.5,
-          width: 1,
-        },
-        move: {
-          direction: MoveDirection.none,
-          enable: true,
-          outModes: {
-            default: OutMode.bounce,
-          },
-          random: false,
-          speed: 2,
-          straight: false,
-        },
-        number: {
-          density: {
-            enable: true,
-            width: 800,
-            height: 800,
-          },
-          value: 40,
-        },
-        opacity: {
-          value: 0.5,
-        },
-        shape: {
-          type: 'circle',
-        },
-        size: {
-          value: { min: 1, max: 5 },
-        },
-      },
-      detectRetina: true,
-    };
+    this.particlesOptions = this.particlesConfigService.getConfig();
   }
 
   ngAfterViewInit(): void {
     console.warn('AppComponent ngAfterViewInit');
     this.ngParticlesService.init(async (engine) => {
       console.warn(engine);
-      await loadSlim(engine).catch((e) => console.error(e));
+      await loadSlim(engine).then(() => {
+        this.particlesReady = true;
+      }).catch((e) => console.error(e));
     })
   }
 
