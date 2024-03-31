@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { NgxParticlesModule, NgParticlesService } from '@tsparticles/angular';
-import { Container, IOptions, RecursivePartial } from '@tsparticles/engine';
+import { IOptions, RecursivePartial } from '@tsparticles/engine';
 import { loadSlim } from '@tsparticles/slim';
 import { version } from '../../package.json';
 import { ParticlesConfigService } from './particles-config.service';
@@ -15,14 +15,6 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   imports: [CommonModule, FontAwesomeModule, NgxParticlesModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  animations: [
-    trigger('fadeInOut', [
-      state('void', style({
-        opacity: 0
-      })),
-      transition('void <=> *', animate(1000)),
-    ])
-  ]
 })
 export class AppComponent implements AfterViewInit {
   title = 'landing-page';
@@ -32,27 +24,25 @@ export class AppComponent implements AfterViewInit {
   faYoutube = faYoutube;
 
   particlesOptions: RecursivePartial<IOptions>;
-  particlesReady = false;
 
   constructor(
     private particlesConfigService: ParticlesConfigService,
     private readonly ngParticlesService: NgParticlesService,
   ) {
-    console.warn('AppComponent constructor with version', version);
+    console.trace('AppComponent constructor with version', version);
     this.particlesOptions = this.particlesConfigService.getConfig();
   }
 
   ngAfterViewInit(): void {
-    console.warn('AppComponent ngAfterViewInit');
+    console.trace('AppComponent ngAfterViewInit');
     this.ngParticlesService.init(async (engine) => {
-      console.warn(engine);
+      console.trace('engine', engine);
       await loadSlim(engine).then(() => {
-        this.particlesReady = true;
+        const particlesElement = document.querySelector('.particles') as HTMLElement;
+        if (particlesElement) {
+          particlesElement.style.display = 'block';
+        }
       }).catch((e) => console.error(e));
     })
-  }
-
-  particlesLoaded(container: Container): void {
-    console.log(container);
   }
 }
