@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { NgxParticlesModule } from '@tsparticles/angular';
-import { NgParticlesService } from '@tsparticles/angular';
+import { NgxParticlesModule, NgParticlesService } from '@tsparticles/angular';
 import { Container, IOptions, MoveDirection, OutMode, RecursivePartial } from '@tsparticles/engine';
 import { loadSlim } from '@tsparticles/slim';
 
@@ -27,13 +26,16 @@ export class AppComponent implements OnInit {
     const isLightMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     const linkColor = isLightMode ? '#000000' : '#ffffff';
     this.particlesOptions = {
-      preset: 'fireworks',
-      fpsLimit: 60,
+      fpsLimit: 120,
       interactivity: {
         events: {
+          onClick: {
+            enable: true,
+            mode: 'push',
+          },
           onHover: {
             enable: true,
-            mode: "repulse",
+            mode: 'repulse',
           },
         },
         modes: {
@@ -70,6 +72,8 @@ export class AppComponent implements OnInit {
         number: {
           density: {
             enable: true,
+            width: 800,
+            height: 800,
           },
           value: 40,
         },
