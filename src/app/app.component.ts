@@ -9,11 +9,10 @@ import { ParticlesConfigService } from './particles-config.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, FontAwesomeModule, NgxParticlesModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    selector: 'app-root',
+    imports: [CommonModule, FontAwesomeModule, NgxParticlesModule],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent implements AfterViewInit {
   title = 'landing-page';
