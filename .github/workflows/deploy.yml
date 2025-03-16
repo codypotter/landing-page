@@ -21,6 +21,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Set up Git identity
+        run: |
+          git config --global user.email "me@codypotter.com"
+          git config --global user.name "Cody Potter"
+
       - name: Run predeploy (versioning and build)
         run: npm run predeploy
 
