@@ -8,4 +8,12 @@ Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The appl
 
 ## Deploy
 
-Authenticate with AWS, then run `npm deploy`. You will see errors if project components are misconfigured in AWS.
+The deployment process is automated using GitHub Actions, AWS S3, and CloudFront.
+
+### Versioning
+
+Changes are merged into main via pull requests. A new version tag is created automatically whenever a PR is merged.
+
+### Release/Deploy
+
+Deployment is triggered by creating a Release in GitHub.
