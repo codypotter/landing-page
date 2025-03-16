@@ -1,18 +1,3 @@
-@keyframes fade-in {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-.particles {
-    display: none;
-    animation: fade-in 1s ease-out;
-}
-
 .is-fullheight {
     height: 100vh;
 }
