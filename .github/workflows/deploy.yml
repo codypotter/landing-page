@@ -1,17 +1,19 @@
-name: Deploy to S3
+name: Deploy Release
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repository at tag
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -20,21 +22,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Set up Git identity
-        run: |
-          git config --global user.email "me@codypotter.com"
-          git config --global user.name "Cody Potter"
-
-      - name: Run predeploy (versioning and build)
-        run: npm run predeploy
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
 
       - name: Deploy to S3
         run: npm run deploy
