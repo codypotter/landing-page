@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGithub, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { version } from '../../package.json';
+import version from '../../package.json';
 import { CommonModule } from '@angular/common';
 
 @Component({
