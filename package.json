@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "tag": "npm version patch -m 'Deploy version %s'",
-    "deploy": "npm run build && aws s3 sync ./dist/landing-page/browser/ s3://cody-potter-landing-page-web --delete"
+    "deploy": "aws s3 sync ./dist/landing-page/browser/ s3://cody-potter-landing-page-web --delete"
   },
   "private": true,
   "dependencies": {
