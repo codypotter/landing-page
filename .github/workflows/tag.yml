@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ssh-key: ${{ secrets.COMMIT_KEY }}
 
       - name: Set up Git identity
         run: |
