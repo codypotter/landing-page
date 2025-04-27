@@ -1,5 +1,85 @@
-@use "bulma/sass" with (
-  $family-primary: '"IBM Plex Sans", sans-serif',
-);
+@use "bulma/sass/utilities";
+@use "bulma/sass/base";
+@use "bulma/sass/elements/box";
+@use "bulma/sass/elements/title";
+@use "bulma/sass/helpers/typography";
+@use "bulma/sass/layout/footer";
+@use "bulma/sass/layout/hero";
+@use "bulma/sass/layout/container";
+@use "bulma/sass/themes";
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Roboto&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap')
+.is-fullheight {
+  min-height: 100vh;
+}
+
+.with-headroom {
+  margin-top: 5rem;
+}
+
+.nav-items {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  .nav-chiclet {
+    min-width: 15rem;
+    min-height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    border-radius: 0.25rem;
+    transition: transform 0.3s ease-in-out, border-width 0.3s ease-in-out;
+    border: 0 solid white;
+
+    svg {
+      fill: currentColor;
+      display: inline-block;
+      vertical-align: middle;
+      height: 2rem;
+    }
+
+    @media (prefers-color-scheme: light) {
+      border-color: black;
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 100vw;
+    }
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    .detail {
+      font-size: 1rem;
+    }
+
+    &#lofi-code {
+      color: white;
+      background-image: linear-gradient(135deg, rgb(255, 15, 123), rgb(248, 155, 41));
+    }
+
+    &#linkedin {
+      color: white;
+      background-color: #0A66C2;
+      font-family: "Source Sans 3", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+    }
+
+    &#youtube {
+      color: white;
+      background-color: #ED0000;
+      font-family: "Roboto", sans-serif;
+    }
+
+    &#github {
+      color: white;
+      background-color: #000;
+    }
+  }
+}

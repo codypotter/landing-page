@@ -2,47 +2,19 @@
   "name": "landing-page",
   "version": "0.0.36",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --configuration=production",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "start": "parcel src/index.html",
+    "build": "rm -rf ./dist && parcel build src/index.html --no-source-maps",
     "tag": "npm version patch -m 'Deploy version %s'",
-    "deploy": "aws s3 sync ./dist/landing-page/browser/ s3://cody-potter-landing-page-web --delete"
+    "deploy": "npm run build && aws s3 sync ./dist/ s3://cody-potter-landing-page-web --delete"
   },
   "private": true,
-  "dependencies": {
-    "@angular/animations": "^19.2.2",
-    "@angular/common": "^19.2.2",
-    "@angular/compiler": "^19.2.2",
-    "@angular/core": "^19.2.2",
-    "@angular/forms": "^19.2.2",
-    "@angular/platform-browser": "^19.2.2",
-    "@angular/platform-browser-dynamic": "^19.2.2",
-    "@angular/router": "^19.2.2",
-    "@fortawesome/angular-fontawesome": "^1.0.0",
-    "@fortawesome/fontawesome-svg-core": "~1.2.36",
-    "@fortawesome/free-brands-svg-icons": "^5.15.4",
-    "@fortawesome/free-regular-svg-icons": "^5.15.4",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "bulma": "^1.0.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
-  },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.2.3",
-    "@angular/cli": "^19.2.3",
-    "@angular/compiler-cli": "^19.2.2",
-    "@types/jasmine": "~5.1.0",
-    "@types/jest": "^29.5.14",
-    "@types/node": "^20.12.2",
-    "jasmine-core": "~5.1.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.5.4"
+    "@parcel/packager-raw-url": "^2.14.4",
+    "@parcel/transformer-sass": "^2.14.4",
+    "@parcel/transformer-webmanifest": "^2.14.4",
+    "bulma": "^1.0.4",
+    "parcel": "^2.14.4",
+    "sass": "^1.87.0",
+    "svgo": "^3.3.2"
   }
 }
