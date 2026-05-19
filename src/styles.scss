@@ -389,58 +389,41 @@ $brand: color.adjust(chartreuse, $lightness: -5%);
 
 // ─── Stack ───────────────────────────────────────────────────────────────────
 
-.stack-section {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+.stack-scroll-container {
+  height: 200vh;
+  position: relative;
 }
 
-.stack-grid {
-  display: grid;
-  grid-template-columns: repeat(3, max-content);
-  gap: 4rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-}
-
-.stack-col {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  transition-delay: var(--delay);
-
-  &.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.stack-heading {
-  font-family: monospace;
-  font-size: 0.8rem;
-  color: black;
-  background: $brand;
-  margin-bottom: 0.75rem;
-  text-transform: lowercase;
-  display: inline-block;
-  padding: 0.15rem 0.5rem;
-  border-radius: 0.15rem;
-}
-
-.stack-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.stack-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+  align-items: center;
+  padding: 0 1.5rem;
+}
 
-  li {
-    font-family: monospace;
-    font-size: 1rem;
+.stack-block {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: monospace;
+  font-size: 1.1rem;
+  line-height: 1.75;
+  overflow-x: auto;
+
+  code {
+    display: block;
   }
+}
+
+.stack-kw   { opacity: 0.45; }
+.stack-var  { color: $brand; }
+.stack-key  { color: $brand; }
+.stack-type { opacity: 0.45; }
+.stack-str {
+  @media (prefers-color-scheme: dark)  { color: #e5c07b; }
+  @media (prefers-color-scheme: light) { color: #986801; }
 }
 
 // ─── How It Works ────────────────────────────────────────────────────────────
@@ -490,6 +473,18 @@ $brand: color.adjust(chartreuse, $lightness: -5%);
   font-family: monospace;
   font-size: 0.8rem;
   opacity: 0.5;
+}
+
+.footer-quote {
+  font-style: italic;
+  opacity: 0.7;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  border-left: 2px solid $brand;
+  padding-left: 0.75rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  display: inline-block;
 }
 
 // ─── Nav Chiclets ─────────────────────────────────────────────────────────────
