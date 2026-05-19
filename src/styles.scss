@@ -512,8 +512,12 @@ $brand: color.adjust(chartreuse, $lightness: -5%);
 
 .project-name {
   font-family: monospace;
-  font-size: 1rem;
-  color: $brand;
+  font-size: 0.85rem;
+  color: black;
+  background: $brand;
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.15rem;
   margin-bottom: 0.4rem;
 }
 
