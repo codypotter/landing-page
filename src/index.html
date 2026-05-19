@@ -163,13 +163,13 @@
         <div class="journey-map">
           <svg viewBox="0 0 958.69 592.79" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
             <image href="./us-map.svg" width="958.69" height="592.79" class="us-map-image" />
-            <path x-ref="arc0" class="flight-arc" d="M112,368 Q25,200 65,75"
+            <path id="arc0" class="flight-arc" d="M112,368 Q25,200 65,75"
               :style="`stroke-dasharray: ${arcLengths[0]}; stroke-dashoffset: ${arcOffset(0)}`" />
             <clipPath id="dfw-clip">
               <rect x="0" y="0" :width="dfwClipWidth()" height="592.79" />
             </clipPath>
             <path class="flight-arc flight-arc-dotted" d="M65,75 Q200,350 490,430" clip-path="url(#dfw-clip)" />
-            <path x-ref="arc1" class="flight-arc" d="M65,75 Q430,20 825,355"
+            <path id="arc1" class="flight-arc" d="M65,75 Q430,20 825,355"
               :style="`stroke-dasharray: ${arcLengths[1]}; stroke-dashoffset: ${arcOffset(1)}`" />
           </svg>
           <div class="journey-stop" style="left:11.68%;top:62.08%" :class="{ 'is-visible': progress >= 0 }"
@@ -415,8 +415,8 @@
           this.$nextTick(() => {
             requestAnimationFrame(() => {
               this.arcLengths = [
-                this.$refs.arc0.getTotalLength(),
-                this.$refs.arc1.getTotalLength(),
+                document.getElementById('arc0').getTotalLength(),
+                document.getElementById('arc1').getTotalLength(),
               ];
             });
 
