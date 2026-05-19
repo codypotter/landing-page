@@ -226,7 +226,35 @@
     </div>
   </div>
 
-  <!-- Journey (coming next) -->
+  <!-- Journey Map -->
+  <div class="journey-scroll-container" x-data="journeyMap" x-ref="scrollContainer">
+    <div class="journey-sticky">
+      <div class="container">
+        <p class="heatmap-label" style="margin-bottom: 1rem;">// the journey</p>
+        <div class="journey-map">
+          <svg viewBox="0 0 958.69 592.79" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <image href="./us-map.svg" width="958.69" height="592.79" style="opacity:0.15;filter:grayscale(1) brightness(3)" />
+            <path x-ref="arc0" class="flight-arc" d="M112,368 Q25,200 65,75"
+              :style="`stroke-dasharray: ${arcLengths[0]}; stroke-dashoffset: ${arcOffset(0)}`" />
+            <path x-ref="arc1" class="flight-arc" d="M65,75 Q430,20 825,355"
+              :style="`stroke-dasharray: ${arcLengths[1]}; stroke-dashoffset: ${arcOffset(1)}`" />
+            <circle cx="112" cy="368" r="6" class="journey-dot" />
+            <circle cx="65" cy="75" r="6" class="journey-dot" :class="{ 'is-visible': progress >= 0.45 }" />
+            <circle cx="825" cy="355" r="6" class="journey-dot" :class="{ 'is-visible': progress >= 0.95 }" />
+          </svg>
+          <div class="journey-label" style="left:11.7%;top:68%" :class="{ 'is-visible': progress >= 0 }">
+            <span>👶</span><span>Orange County, CA</span>
+          </div>
+          <div class="journey-label" style="left:6.8%;top:19%" :class="{ 'is-visible': progress >= 0.45 }">
+            <span>🎓</span><span>Portland, OR</span>
+          </div>
+          <div class="journey-label" style="left:86%;top:68%" :class="{ 'is-visible': progress >= 0.95 }">
+            <span>🏖️</span><span>Wilmington, NC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">
@@ -314,6 +342,36 @@
           if (count <= 8) return 2;
           if (count <= 20) return 3;
           return 4;
+        },
+      }));
+      Alpine.data('journeyMap', () => ({
+        progress: 0,
+        arcLengths: [0, 0],
+
+        init() {
+          this.$nextTick(() => {
+            this.arcLengths = [
+              this.$refs.arc0.getTotalLength(),
+              this.$refs.arc1.getTotalLength(),
+            ];
+
+            const onScroll = () => {
+              const container = this.$refs.scrollContainer;
+              const rect = container.getBoundingClientRect();
+              const scrollable = container.offsetHeight - window.innerHeight;
+              this.progress = Math.max(0, Math.min(1, -rect.top / scrollable));
+            };
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+          });
+        },
+
+        arcOffset(index) {
+          const len = this.arcLengths[index];
+          const start = index * 0.5;
+          const p = Math.max(0, Math.min(1, (this.progress - start) / 0.5));
+          return len * (1 - p);
         },
       }));
     });
