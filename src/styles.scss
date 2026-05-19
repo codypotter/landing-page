@@ -487,6 +487,66 @@ $brand: color.adjust(chartreuse, $lightness: -5%);
   display: inline-block;
 }
 
+// ─── Projects ────────────────────────────────────────────────────────────────
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 640px;
+}
+
+.project {
+  border-left: 2px solid $brand;
+  padding-left: 1rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition-delay: var(--delay);
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-name {
+  font-family: monospace;
+  font-size: 1rem;
+  color: $brand;
+  margin-bottom: 0.4rem;
+}
+
+.project-desc {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  opacity: 0.85;
+  margin-bottom: 0.75rem;
+}
+
+// ─── Again Again ─────────────────────────────────────────────────────────────
+
+.again-section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.again-btn {
+  background: none;
+  border: none;
+  font-family: monospace;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  cursor: pointer;
+  opacity: 0.25;
+  transition: opacity 0.3s ease;
+  padding: 0;
+  color: inherit;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 // ─── Nav Chiclets ─────────────────────────────────────────────────────────────
 
 .nav-items {
