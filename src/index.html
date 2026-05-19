@@ -233,23 +233,23 @@
         <p class="heatmap-label" style="margin-bottom: 1rem;">// the journey</p>
         <div class="journey-map">
           <svg viewBox="0 0 958.69 592.79" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-            <image href="./us-map.svg" width="958.69" height="592.79" style="opacity:0.15;filter:grayscale(1) brightness(3)" />
+            <image href="./us-map.svg" width="958.69" height="592.79" class="us-map-image" />
             <path x-ref="arc0" class="flight-arc" d="M112,368 Q25,200 65,75"
               :style="`stroke-dasharray: ${arcLengths[0]}; stroke-dashoffset: ${arcOffset(0)}`" />
             <path x-ref="arc1" class="flight-arc" d="M65,75 Q430,20 825,355"
               :style="`stroke-dasharray: ${arcLengths[1]}; stroke-dashoffset: ${arcOffset(1)}`" />
-            <circle cx="112" cy="368" r="6" class="journey-dot" />
-            <circle cx="65" cy="75" r="6" class="journey-dot" :class="{ 'is-visible': progress >= 0.45 }" />
-            <circle cx="825" cy="355" r="6" class="journey-dot" :class="{ 'is-visible': progress >= 0.95 }" />
           </svg>
-          <div class="journey-label" style="left:11.7%;top:68%" :class="{ 'is-visible': progress >= 0 }">
-            <span>👶</span><span>Orange County, CA</span>
+          <div class="journey-stop" style="left:11.68%;top:62.08%" :class="{ 'is-visible': progress >= 0 }">
+            <span class="journey-emoji">👶</span>
+            <span class="journey-place">Orange County, CA</span>
           </div>
-          <div class="journey-label" style="left:6.8%;top:19%" :class="{ 'is-visible': progress >= 0.45 }">
-            <span>🎓</span><span>Portland, OR</span>
+          <div class="journey-stop" style="left:6.78%;top:12.65%" :class="{ 'is-visible': progress >= 0.45 }">
+            <span class="journey-emoji">🎓</span>
+            <span class="journey-place">Portland, OR</span>
           </div>
-          <div class="journey-label" style="left:86%;top:68%" :class="{ 'is-visible': progress >= 0.95 }">
-            <span>🏖️</span><span>Wilmington, NC</span>
+          <div class="journey-stop" style="left:86.06%;top:59.89%" :class="{ 'is-visible': progress >= 0.95 }">
+            <span class="journey-emoji">🏖️</span>
+            <span class="journey-place">Wilmington, NC</span>
           </div>
         </div>
       </div>
