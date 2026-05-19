@@ -266,6 +266,11 @@
   stroke: rgb(255, 17, 122);
   stroke-width: 3;
   stroke-linecap: round;
+  transition: opacity 0.4s ease;
+}
+
+.flight-arc-dotted {
+  stroke-dasharray: 10 12;
 }
 
 .journey-stop {
@@ -278,10 +283,73 @@
   z-index: 2;
   opacity: 0;
   transition: opacity 0.4s ease;
+  cursor: pointer;
 
   &.is-visible {
     opacity: 1;
   }
+
+  &:hover .journey-emoji {
+    transform: scale(1.2);
+  }
+}
+
+.stop-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.stop-card {
+  position: relative;
+  max-width: 360px;
+  width: 90vw;
+  padding: 1.75rem;
+  border-radius: 0.5rem;
+  cursor: default;
+
+  @media (prefers-color-scheme: dark) {
+    background: #1a1a1a;
+  }
+  @media (prefers-color-scheme: light) {
+    background: white;
+  }
+
+  p {
+    line-height: 1.7;
+    margin-top: 0.5rem;
+  }
+}
+
+.stop-card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem !important;
+}
+
+.stop-card-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  opacity: 0.5;
+  line-height: 1;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.journey-emoji {
+  transition: transform 0.2s ease;
 }
 
 .journey-emoji {

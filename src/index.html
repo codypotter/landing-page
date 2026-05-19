@@ -236,20 +236,60 @@
             <image href="./us-map.svg" width="958.69" height="592.79" class="us-map-image" />
             <path x-ref="arc0" class="flight-arc" d="M112,368 Q25,200 65,75"
               :style="`stroke-dasharray: ${arcLengths[0]}; stroke-dashoffset: ${arcOffset(0)}`" />
+            <clipPath id="dfw-clip">
+              <rect x="0" y="0" :width="dfwClipWidth()" height="592.79" />
+            </clipPath>
+            <path class="flight-arc flight-arc-dotted" d="M65,75 Q200,350 490,430"
+              clip-path="url(#dfw-clip)" />
             <path x-ref="arc1" class="flight-arc" d="M65,75 Q430,20 825,355"
               :style="`stroke-dasharray: ${arcLengths[1]}; stroke-dashoffset: ${arcOffset(1)}`" />
           </svg>
-          <div class="journey-stop" style="left:11.68%;top:62.08%" :class="{ 'is-visible': progress >= 0 }">
+          <div class="journey-stop" style="left:11.68%;top:62.08%" :class="{ 'is-visible': progress >= 0 }" @click="selectedStop = 'oc'">
             <span class="journey-emoji">👶</span>
             <span class="journey-place">Orange County, CA</span>
           </div>
-          <div class="journey-stop" style="left:6.78%;top:12.65%" :class="{ 'is-visible': progress >= 0.45 }">
+          <div class="journey-stop" style="left:6.78%;top:12.65%" :class="{ 'is-visible': progress >= 0.3 }" @click="selectedStop = 'pdx'">
             <span class="journey-emoji">🎓</span>
             <span class="journey-place">Portland, OR</span>
           </div>
-          <div class="journey-stop" style="left:86.06%;top:59.89%" :class="{ 'is-visible': progress >= 0.95 }">
+          <div class="journey-stop" style="left:51.1%;top:72.5%" :class="{ 'is-visible': progress >= 0.62 }" @click="selectedStop = 'dfw'">
+            <span class="journey-emoji">🎮</span>
+            <span class="journey-place">Dallas, TX</span>
+          </div>
+          <div class="journey-stop" style="left:86.06%;top:59.89%" :class="{ 'is-visible': progress >= 0.95 }" @click="selectedStop = 'ilm'">
             <span class="journey-emoji">🏖️</span>
             <span class="journey-place">Wilmington, NC</span>
+          </div>
+
+          <div class="stop-modal" x-show="selectedStop" x-transition @click="selectedStop = null">
+            <div class="stop-card" @click.stop>
+              <template x-if="selectedStop === 'oc'">
+                <div>
+                  <p class="stop-card-title">👶 Orange County, CA</p>
+                  <p>Grew up in southern California. Started out studying arts and humanities, but caught the programming bug and switched to CS.</p>
+                </div>
+              </template>
+              <template x-if="selectedStop === 'pdx'">
+                <div>
+                  <p class="stop-card-title">🎓 Portland, OR</p>
+                  <p>Moved to Portland to study CS at Portland State University. Worked full time through school (eventually as a team leader at Whole Foods) and graduated in 2021 with a 3.77 GPA.</p>
+                  <p>Contracted as a UI QA Engineer at <a href="https://www.mightynetworks.com/" target="_blank">MightyNetworks</a> and did some programming tutoring while getting my footing.</p>
+                </div>
+              </template>
+              <template x-if="selectedStop === 'dfw'">
+                <div>
+                  <p class="stop-card-title">🎮 Dallas, TX</p>
+                  <p>I joined <a href="https://www.gearboxsoftware.com/" target="_blank">Gearbox</a> in 2022 and work fully remote.</p>
+                </div>
+              </template>
+              <template x-if="selectedStop === 'ilm'">
+                <div>
+                  <p class="stop-card-title">🏖️ Wilmington, NC</p>
+                  <p>Traded the Pacific Northwest for the Atlantic coast. Same work, better beach access.</p>
+                </div>
+              </template>
+              <button class="stop-card-close" @click="selectedStop = null">&times;</button>
+            </div>
           </div>
         </div>
       </div>
@@ -347,6 +387,7 @@
       Alpine.data('journeyMap', () => ({
         progress: 0,
         arcLengths: [0, 0],
+        selectedStop: null,
 
         init() {
           this.$nextTick(() => {
@@ -367,10 +408,16 @@
           });
         },
 
+        dfwClipWidth() {
+          const p = Math.max(0, Math.min(1, (this.progress - 0.33) / 0.33));
+          return p * 530;
+        },
+
         arcOffset(index) {
           const len = this.arcLengths[index];
-          const start = index * 0.5;
-          const p = Math.max(0, Math.min(1, (this.progress - start) / 0.5));
+          const phases = [[0, 0.33], [0.66, 1.0]];
+          const [start, end] = phases[index];
+          const p = Math.max(0, Math.min(1, (this.progress - start) / (end - start)));
           return len * (1 - p);
         },
       }));
