@@ -413,10 +413,12 @@
 
         init() {
           this.$nextTick(() => {
-            this.arcLengths = [
-              this.$refs.arc0.getTotalLength(),
-              this.$refs.arc1.getTotalLength(),
-            ];
+            requestAnimationFrame(() => {
+              this.arcLengths = [
+                this.$refs.arc0.getTotalLength(),
+                this.$refs.arc1.getTotalLength(),
+              ];
+            });
 
             const onScroll = () => {
               const container = this.$refs.scrollContainer;
