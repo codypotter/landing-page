@@ -232,15 +232,6 @@
     </div>
   </div>
 
-  <!-- Stack -->
-  <div class="stack-scroll-container" x-data="stackBlock" x-ref="scrollContainer">
-    <div class="stack-sticky">
-      <div class="container">
-        <p class="heatmap-label" style="margin-bottom: 1.5rem;">// the (full) stack</p>
-        <pre class="stack-block"><code x-html="rendered"></code></pre>
-      </div>
-    </div>
-  </div>
 
   <!-- How it works -->
   <div x-data="{ open: false }">
@@ -276,7 +267,7 @@
 
         <div class="project" :class="{ 'is-visible': visible }" style="--delay: 0s">
           <p class="project-name">ascii-commit</p>
-          <p class="project-desc">A CLI tool that paints ASCII art into your GitHub contribution graph. Pass it an art file, it figures out the commit schedule and does the rest.</p>
+          <p class="project-desc">Recruiters hate this one trick: A CLI tool that paints ASCII art into your GitHub contribution graph. Pass it an art file, it figures out the commit schedule and does the rest.</p>
           <div class="commit-links">
             <a class="commit-link" href="https://github.com/codypotter/ascii-commit" target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8z"/></svg>
@@ -287,7 +278,7 @@
 
         <div class="project" :class="{ 'is-visible': visible }" style="--delay: 0.1s">
           <p class="project-name">loficode</p>
-          <p class="project-desc">A blog platform built from scratch on Go and HTMX. Templated and static, deployed to S3 and CloudFront, with progressive enhancement handled by Lambda. Costs almost nothing to run. I wrote about the stack.</p>
+          <p class="project-desc">A blog platform built from scratch on Go and HTMX. Templated and static, drafted from a WYSIWYG, deployed to S3 and CloudFront, with progressive enhancement handled by Lambda. Costs almost nothing to run. I wrote all about it on my blog.</p>
           <div class="commit-links">
             <a class="commit-link" href="https://github.com/codypotter/lofi-code" target="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8z"/></svg>
@@ -415,45 +406,6 @@
           return 4;
         },
       }));
-      Alpine.data('stackBlock', () => ({
-        charsVisible: 0,
-        lines: [
-          [{ cls: 'stack-kw', text: 'type' }, { cls: '', text: ' ' }, { cls: 'stack-var', text: 'Stack' }, { cls: '', text: ' ' }, { cls: 'stack-kw', text: 'struct' }, { cls: '', text: ' {' }],
-          [{ cls: '', text: '\t' }, { cls: 'stack-key', text: 'Languages' }, { cls: '', text: '      ' }, { cls: 'stack-type', text: '[]string' }, { cls: '', text: '{' }, { cls: 'stack-str', text: '"Go"' }, { cls: '', text: ', ' }, { cls: 'stack-str', text: '"Ruby"' }, { cls: '', text: ', ' }, { cls: 'stack-str', text: '"Node.js"' }, { cls: '', text: '}' }],
-          [{ cls: '', text: '\t' }, { cls: 'stack-key', text: 'Frontend' }, { cls: '', text: '       ' }, { cls: 'stack-type', text: '[]string' }, { cls: '', text: '{' }, { cls: 'stack-str', text: '"Alpine.js"' }, { cls: '', text: ', ' }, { cls: 'stack-str', text: '"HTMX"' }, { cls: '', text: ', ' }, { cls: 'stack-str', text: '"TypeScript"' }, { cls: '', text: ', ' }, { cls: 'stack-str', text: '"Angular"' }, { cls: '', text: '}' }],
-          [{ cls: '', text: '\t' }, { cls: 'stack-key', text: 'Infrastructure' }, { cls: '', text: ' ' }, { cls: 'stack-type', text: '[]string' }, { cls: '', text: '{' }, { cls: 'stack-str', text: '"AWS"' }, { cls: '', text: ', ' }, { cls: 'stack-str', text: '"Terraform"' }, { cls: '', text: ', ' }, { cls: 'stack-str', text: '"Docker"' }, { cls: '', text: ', ' }, { cls: 'stack-str', text: '"Redis"' }, { cls: '', text: ', ' }, { cls: 'stack-str', text: '"MySQL"' }, { cls: '', text: '}' }],
-          [{ cls: '', text: '}' }],
-        ],
-        get totalChars() {
-          return this.lines.reduce((n, line) => n + line.reduce((m, s) => m + s.text.length, 0), 0);
-        },
-        get rendered() {
-          let charCount = 0;
-          let html = '';
-          for (const line of this.lines) {
-            for (const seg of line) {
-              const visible = Math.max(0, Math.min(seg.text.length, this.charsVisible - charCount));
-              const text = seg.text.slice(0, visible).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-              if (text) html += seg.cls ? `<span class="${seg.cls}">${text}</span>` : text;
-              charCount += seg.text.length;
-            }
-            html += '\n';
-          }
-          return html;
-        },
-        init() {
-          const onScroll = () => {
-            const container = this.$refs.scrollContainer;
-            const rect = container.getBoundingClientRect();
-            const scrollable = container.offsetHeight - window.innerHeight;
-            const progress = Math.max(0, Math.min(1, -rect.top / scrollable));
-            this.charsVisible = Math.round(progress * this.totalChars);
-          };
-          window.addEventListener('scroll', onScroll, { passive: true });
-          this.$nextTick(onScroll);
-        },
-      }));
-
       Alpine.data('journeyMap', () => ({
         progress: 0,
         arcLengths: [0, 0],
