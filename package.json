@@ -2,6 +2,9 @@
   "name": "landing-page",
   "version": "0.0.37",
   "scripts": {
+    "prefetch": "node scripts/fetch-calendar.js",
+    "prestart": "node scripts/fetch-calendar.js",
+    "prebuild": "node scripts/fetch-calendar.js",
     "start": "parcel src/index.html",
     "build": "rm -rf ./dist && parcel build src/index.html --no-source-maps",
     "tag": "npm version patch -m 'Deploy version %s'",
