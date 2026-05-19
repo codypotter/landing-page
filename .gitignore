@@ -42,3 +42,6 @@ testem.log
 Thumbs.db
 
 .parcel-cache
+
+# Generated at build time
+/src/calendar-data.js
