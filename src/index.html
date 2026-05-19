@@ -19,7 +19,7 @@
   >
   <meta
     name="theme-color"
-    content="#FF117A"
+    content="#7FFF00"
   >
   <meta
     name="apple-mobile-web-app-capable"
@@ -39,7 +39,7 @@
   >
   <meta
     name="msapplication-TileColor"
-    content="#FF117A"
+    content="#7FFF00"
   >
   <meta
     name="og:title"
@@ -296,9 +296,25 @@
     </div>
   </div>
 
+  <!-- How it works -->
+  <div x-data="{ open: false }">
+    <button class="how-it-works-btn" @click="open = true" title="How this works">&lt;? /&gt;</button>
+    <div class="stop-modal" x-show="open" x-transition @click="open = false">
+      <div class="stop-card how-it-works-card" @click.stop>
+        <p class="stop-card-title">// how this works</p>
+        <p>This page is plain HTML, a stylesheet, and a sprinkle of JavaScript via Alpine.js. I reached for Alpine because the right tool is usually the smallest one that does the job.</p>
+        <blockquote>"Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away." - Antoine de Saint-Exupery</blockquote>
+        <p>Simplicity is not a constraint. It is a principle I try to apply to everything I build.</p>
+        <p class="how-it-works-source">The source is on GitHub if you want to dig in: <a href="https://github.com/codypotter/landing-page" target="_blank">github.com/codypotter/landing-page</a></p>
+        <button class="stop-card-close" @click="open = false">&times;</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="content has-text-centered">
+      <p><em>"Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away." - Antoine de Saint-Exupery</em></p>
       <p>
         <strong>The Landing Page</strong> by <a href="https://github.com/codypotter">Cody Potter</a>.
         The source code is licensed
